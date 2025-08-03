@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pengaduan Masyarakat - Kabupaten Deiyai</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="chat-wrapper">
+        <header class="chat-header">
+            <img src="assets/logo-deiyai.png" alt="Logo Deiyai" class="logo" />
+            <div>
+                <h1>Pengaduan Masyarakat</h1>
+                <p>Pemerintah Kabupaten Deiyai</p>
+            </div>
+        </header>
+
+        <main class="chat-box" id="chatBox">
+            <div class="message bot">
+                <div class="avatar bot-avatar">🤖</div>
+                <div class="text">
+                    Halo! Silakan tulis pengaduan Anda. Sistem akan mengirimkan laporan ke Kominfo Deiyai melalui
+                    WhatsApp.
+                </div>
+            </div>
+        </main>
+
+        <footer class="chat-input">
+            <input type="text" id="userInput" placeholder="Tulis pengaduan Anda..." />
+            <button onclick="sendMessage()">Kirim</button>
+        </footer>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById("userInput");
+            const text = input.value.trim();
+            if (text === "") return;
+
+            const chatBox = document.getElementById("chatBox");
+
+            // Tampilkan pesan dari pengguna
+            const userMsg = document.createElement("div");
+            userMsg.className = "message user";
+            userMsg.innerHTML = `
+                <div class="avatar user-avatar">🧑</div>
+                <div class="text">${text}</div>
+            `;
+            chatBox.appendChild(userMsg);
+
+            // Kirim ke WhatsApp
+            const nomorWA = "6281344121216"; // Ganti dengan nomor WA Kominfo
+            const pesanWA = encodeURIComponent("Pengaduan dari masyarakat:\n\n" + text);
+            window.open(`https://wa.me/${nomorWA}?text=${pesanWA}`, "_blank");
+
+            input.value = "";
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
+</body>
+
+</html>
