@@ -43,17 +43,15 @@
 
             const chatBox = document.getElementById("chatBox");
 
-            // Tampilkan pesan dari pengguna
             const userMsg = document.createElement("div");
             userMsg.className = "message user";
             userMsg.innerHTML = `
-                <div class="avatar user-avatar">🧑</div>
-                <div class="text">${text}</div>
-            `;
+        <div class="avatar user-avatar">🧑</div>
+        <div class="text">${text}</div>
+      `;
             chatBox.appendChild(userMsg);
 
-            // Kirim ke WhatsApp
-            const nomorWA = "6281344121216"; // Ganti dengan nomor WA Kominfo
+            const nomorWA = "6281344121216";
             const pesanWA = encodeURIComponent("Pengaduan dari masyarakat:\n\n" + text);
             window.open(`https://wa.me/${nomorWA}?text=${pesanWA}`, "_blank");
 
